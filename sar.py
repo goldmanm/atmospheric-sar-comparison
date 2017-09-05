@@ -31,6 +31,7 @@ class SAR:
         self.valid_atom_types = valid_atom_types or []
         self.temperature_range = temperature_range or (200,1000)
         self.pressure_range = pressure_range or (1e4,1e6)
+        self.description = description
         self._check_proper_attribute_types(self)
 
     def _check_proper_attribute_types(self):
@@ -45,14 +46,24 @@ class SAR:
         assert len(self.temperature_range) == 2
         assert len(self.pressure_range) == 2
 
-    def get_rate(self, molecules,temperature, pressure, **kwargs):
+    def get_rate(self, molecules,temperature, pressure=1e5, **kwargs):
         """
         input list of molecular graph object from RMG-mol with the reacting atoms labeled, 
         temperature (kevlin), pressure (pascals), and other auxilliary information
 
         outputs the rate constant (float) at those conditions
         """
-        raise NotImplementedError('Please overwrite get_rate method')
+        rate_expression = self.get_arrhenius(molecules, **kwargs)
+        return rate_expression.getRateCoefficient(temperature, pressure)
+
+    def get_arrhenius(self, molecules, **kwargs):
+        """
+        input list of molecular graph objects from RMG-mol that represent the reactant
+        and any other auxilliary arguments needed for this method.
+
+        outputs RMG-kinetics Arrhenius object for the given reaction.
+        """
+        raise NotImplementedError('Please overwrite get_rate or get_arrhenius method for SAR {}'.format(self.label))
 
     def is_valid_reactant(self,molecule):
         """
@@ -74,7 +85,8 @@ class SAR:
         returns a set of all atom types in molecule that are not regressed in the SAR
 
         note: this may need to be further refined since a model may be able to support
-        alkohols and ketones but not both together in the same molecule. 
+        alcohols and ketones but not both together in the same molecule. also does not
+        check cyclics.
         """
         if len(self.valid_atom_types) == 0:
             raise ValueError('Cannot test non_valid_types of molecule {0} if self.valid_atom_types is empty'.format(molecule))
@@ -88,3 +100,36 @@ class AlkoxySAR(SAR):
     """
     Inherited class from SAR for specifically Alkoxy radical isomerizations.
     """
+    def __init__(self,label = '',
+                 valid_atom_types = None,
+                 temperature_range=None,
+                 pressure_range = None,
+                 description = '',
+                 valid_distances = None
+                 ):
+        self._SAR__init__(label, valid_atom_types, temperature_range, pressure_range,description)
+        self.valid_distances = valid_distances or []
+
+    # helper methods for getting rates from various instances
+    def get_labeled_atoms(molecule):
+        """
+        input is a molecular graph from RMG-mol with proper labeling
+
+        output is a dictionary with keys 'radical', 'hydrogen' and 'alkane'
+        """
+        output = {}
+        for atom in molecule.atoms:
+            if atom.label == '*1':
+                output['radical'] = atom
+            elif atom.label == '*2':
+                output['alkane'] = atom
+            elif atom.label == '*3':
+                output['hydrogen'] = atom
+
+    def get_ts_ring_size(molecule):
+        """
+        input is a molecular graph from RMG-mol with labeled atoms
+
+        output is an integer describing the number of atoms in final transitionstate
+        """
+        pass
