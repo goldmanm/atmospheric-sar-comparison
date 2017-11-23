@@ -53,7 +53,7 @@ class SAR:
 
         outputs the rate constant (float) at those conditions
         """
-        rate_expression = self.get_arrhenius(reaction, **kwargs)
+        rate_expression = self.get_arrhenius(self, reaction, **kwargs)
         return rate_expression.getRateCoefficient(temperature, pressure)
 
     def get_arrhenius(self, reaction, **kwargs):

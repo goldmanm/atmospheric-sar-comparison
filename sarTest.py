@@ -46,7 +46,7 @@ if __name__ =='__main__':
 class SarDatabaseTest(unittest.TestCase):
 
     def setUp(self):
-        self.database = SARDatabase().load('sar_data/Atkinson2007.py')
+        self.database = SARDatabase().load('sar_data/atkinson2007.py')
         self.methyl = Molecule().fromAdjacencyList("""
 multiplicity 2
 1 *3 C u1 p0 c0 {2,S} {3,S} {4,S}
@@ -124,62 +124,7 @@ multiplicity 2
         self.assertNotEqual(len(atoms),0)
         entry = self.database.descendTree(self.ethane,atoms)
         self.assertIsNone(entry)
-
-
-class SarRateEstimationTest(unittest.TestCase):
-
-    def setUp(self):
-        self.sar = sar_atkinson
-        self.reaction = TemplateReaction(reactants=[Species(label="", thermo=ThermoData(Tdata=([300,400,500,600,800,1000,1500],'K'), Cpdata=([35.4385,39.2459,43.7646,48.1997,55.9401,61.965,61.965],'J/(mol*K)'), H298=(-108.575,'kJ/mol'), S298=(218.834,'J/(mol*K)'), Cp0=(33.2579,'J/(mol*K)'), CpInf=(83.1447,'J/(mol*K)'), comment="""Thermo group additivity estimation: group(Cds-OdHH)"""), molecule=[Molecule().fromAdjacencyList("""1 *1 C u0 p0 c0 {2,S} {3,S} {4,D}
-2    H u0 p0 c0 {1,S}
-3    H u0 p0 c0 {1,S}
-4 *2 O u0 p2 c0 {1,D}
-""")]), Species(label="", thermo=ThermoData(Tdata=([300,400,500,600,800,1000,1500],'K'), Cpdata=([9.331,9.988,10.611,11.274,12.457,13.427,15.105],'cal/(mol*K)'), H298=(34.893,'kcal/mol'), S298=(46.3704,'cal/(mol*K)'), Cp0=(33.2579,'J/(mol*K)'), CpInf=(108.088,'J/(mol*K)'), comment="""Thermo library: primaryThermoLibrary + radical(CH3)"""), molecule=[Molecule().fromAdjacencyList("""multiplicity 2
-1 *3 C u1 p0 c0 {2,S} {3,S} {4,S}
-2    H u0 p0 c0 {1,S}
-3    H u0 p0 c0 {1,S}
-4    H u0 p0 c0 {1,S}
-""")])], products=[Species(label="", thermo=ThermoData(Tdata=([300,400,500,600,800,1000,1500],'K'), Cpdata=([61.879,72.3026,83.2296,93.9954,112.876,127.558,150.145],'J/(mol*K)'), H298=(-17.2758,'kJ/mol'), S298=(284.871,'J/(mol*K)'), Cp0=(33.2579,'J/(mol*K)'), CpInf=(178.761,'J/(mol*K)'), comment="""Thermo group additivity estimation: group(Cs-CsOsHH) + group(Cs-CsHHH) + group(Os-CsH) + radical(CCOJ)"""), molecule=[Molecule().fromAdjacencyList("""multiplicity 2
-1 *3 C u0 p0 c0 {2,S} {4,S} {5,S} {6,S}
-2 *1 C u0 p0 c0 {1,S} {3,S} {7,S} {8,S}
-3 *2 O u1 p2 c0 {2,S}
-4    H u0 p0 c0 {1,S}
-5    H u0 p0 c0 {1,S}
-6    H u0 p0 c0 {1,S}
-7    H u0 p0 c0 {2,S}
-8    H u0 p0 c0 {2,S}
-""")])], pairs=[[Species(label="", thermo=ThermoData(Tdata=([300,400,500,600,800,1000,1500],'K'), Cpdata=([35.4385,39.2459,43.7646,48.1997,55.9401,61.965,61.965],'J/(mol*K)'), H298=(-108.575,'kJ/mol'), S298=(218.834,'J/(mol*K)'), Cp0=(33.2579,'J/(mol*K)'), CpInf=(83.1447,'J/(mol*K)'), comment="""Thermo group additivity estimation: group(Cds-OdHH)"""), molecule=[Molecule().fromAdjacencyList("""1 *1 C u0 p0 c0 {2,S} {3,S} {4,D}
-2    H u0 p0 c0 {1,S}
-3    H u0 p0 c0 {1,S}
-4 *2 O u0 p2 c0 {1,D}
-""")]), Species(label="", thermo=ThermoData(Tdata=([300,400,500,600,800,1000,1500],'K'), Cpdata=([61.879,72.3026,83.2296,93.9954,112.876,127.558,150.145],'J/(mol*K)'), H298=(-17.2758,'kJ/mol'), S298=(284.871,'J/(mol*K)'), Cp0=(33.2579,'J/(mol*K)'), CpInf=(178.761,'J/(mol*K)'), comment="""Thermo group additivity estimation: group(Cs-CsOsHH) + group(Cs-CsHHH) + group(Os-CsH) + radical(CCOJ)"""), molecule=[Molecule().fromAdjacencyList("""multiplicity 2
-1 *3 C u0 p0 c0 {2,S} {4,S} {5,S} {6,S}
-2 *1 C u0 p0 c0 {1,S} {3,S} {7,S} {8,S}
-3 *2 O u1 p2 c0 {2,S}
-4    H u0 p0 c0 {1,S}
-5    H u0 p0 c0 {1,S}
-6    H u0 p0 c0 {1,S}
-7    H u0 p0 c0 {2,S}
-8    H u0 p0 c0 {2,S}
-""")])], [Species(label="", thermo=ThermoData(Tdata=([300,400,500,600,800,1000,1500],'K'), Cpdata=([9.331,9.988,10.611,11.274,12.457,13.427,15.105],'cal/(mol*K)'), H298=(34.893,'kcal/mol'), S298=(46.3704,'cal/(mol*K)'), Cp0=(33.2579,'J/(mol*K)'), CpInf=(108.088,'J/(mol*K)'), comment="""Thermo library: primaryThermoLibrary + radical(CH3)"""), molecule=[Molecule().fromAdjacencyList("""multiplicity 2
-1 *3 C u1 p0 c0 {2,S} {3,S} {4,S}
-2    H u0 p0 c0 {1,S}
-3    H u0 p0 c0 {1,S}
-4    H u0 p0 c0 {1,S}
-""")]), Species(label="", thermo=ThermoData(Tdata=([300,400,500,600,800,1000,1500],'K'), Cpdata=([61.879,72.3026,83.2296,93.9954,112.876,127.558,150.145],'J/(mol*K)'), H298=(-17.2758,'kJ/mol'), S298=(284.871,'J/(mol*K)'), Cp0=(33.2579,'J/(mol*K)'), CpInf=(178.761,'J/(mol*K)'), comment="""Thermo group additivity estimation: group(Cs-CsOsHH) + group(Cs-CsHHH) + group(Os-CsH) + radical(CCOJ)"""), molecule=[Molecule().fromAdjacencyList("""multiplicity 2
-1 *3 C u0 p0 c0 {2,S} {4,S} {5,S} {6,S}
-2 *1 C u0 p0 c0 {1,S} {3,S} {7,S} {8,S}
-3 *2 O u1 p2 c0 {2,S}
-4    H u0 p0 c0 {1,S}
-5    H u0 p0 c0 {1,S}
-6    H u0 p0 c0 {1,S}
-7    H u0 p0 c0 {2,S}
-8    H u0 p0 c0 {2,S}
-""")])]], family='R_Addition_MultipleBond', template=['Cd_R', 'CsJ'])
-    def test_lookup_molecule_entry(self):
-        rate = self.sar.get_arrhenius(self.sar,self.reaction)
-        self.assertAlmostEqual(rate.Ea.value,18.1,places=1) # found from atkinson2007
-        self.assertFail()
+        
 
 if __name__ == '__main__':
     unittest.main( testRunner = unittest.TextTestRunner(verbosity=2) )

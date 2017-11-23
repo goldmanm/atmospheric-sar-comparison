@@ -8,15 +8,15 @@ Created on Tue Sep  5 09:14:26 2017
 from sar import AlkoxyDecompositionSAR
 from sarDatabase import SARDatabase
 
-sar_atkinson = AlkoxyDecompositionSAR(label='Atkinson2007',
+sar = AlkoxyDecompositionSAR(label='Atkinson2007',
                          valid_atom_types = ['Cs','CO',''],
                          temperature_range = (244,312.5),
                          pressure_range = (1e5,1e5),
                 )
 
-sar_atkinson.a_value_tree = SARDatabase().load('sar_data/Atkinson2007.py')
+sar.a_value_tree = SARDatabase().load('/home/mark/workspace/alkoxy-sar/sar_data/atkinson2007.py')
 
-def atkinson_get_arrhenius(self, reaction):
+def atkinson_get_arrhenius(self,reaction):
     """
     Estimates the reaction rate for alkoxy decomposition given
     an RMG reaction from R_Addition_multiplebond family
@@ -30,7 +30,7 @@ def atkinson_get_arrhenius(self, reaction):
     The method originates from Atkinson 2007
     """
     from rmgpy.kinetics.arrhenius import Arrhenius
-    
+
     A = 5e13 #s-1
     b = 0.40
     #get radical species for lookup of a value
@@ -58,6 +58,10 @@ def atkinson_get_arrhenius(self, reaction):
     deltaH /=4184 #kcal/mol
 
     Ea = a - b*deltaH
+
+    # get deneracy
+    A *= reaction.degeneracy
+
     return Arrhenius(A=(A,'s^-1'),Ea=(Ea,'kcal/mol'))
 
-sar_atkinson.get_arrhenius = atkinson_get_arrhenius
+sar.get_arrhenius = atkinson_get_arrhenius
