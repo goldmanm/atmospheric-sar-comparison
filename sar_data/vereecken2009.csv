@@ -1,0 +1,27 @@
+group,effect
+alpha-alkyl, -2.3
+alpha-alkyl-oxygenate,-0.7
+alpha=O,-12.7
+alpha-OH,-8.9
+alpha-OR,-9.2
+alpha-OOH,-8.9
+alpha-OOR,-6.4
+alpha-NO,
+alpha-NO2,-2.2
+alpha-ONO,-4.2
+alpha-ONO2,-3.8
+alpha=C,21.5
+alpha-C=C,-4.9
+beta-alkyl,-3.4
+beta-alkyl-oxygenate, -0.7
+beta=O,-8.5
+beta-OH,-7.5
+beta-OR,-9.1
+beta-OOH,-9.3
+beta-OOR,-7.2
+beta-NO,-16
+beta-NO2,0.4
+beta-ONO,-6
+beta-ONO2,-2.8
+beta=C,5
+beta-C=C,-9.6
