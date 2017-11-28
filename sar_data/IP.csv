@@ -1,0 +1,37 @@
+smiles,IP,source
+[CH3],9.84,NIST Chemistry WebBook Ionization energy evaluation
+C[CH2],8.117,Ruscic Berkowitz et al. 1989
+CC[CH2],8.09,Dyke Ellis et al. 1985
+C[CH]C,7.37,Dyke Ellis et al. 1985
+CCC[CH2],8.02,Taubert and Lossing 1962
+CC[CH]C,7.25,Schultz Houle et al. 1984	
+[CH2]C(C)C,7.93,Schultz Houle et al. 1984	
+C[C](C)C,6.70,Houle and Beauchamp 1979	
+[CH2]CCCC,7.85,Lias Bartmess et al. 1988
+C[CH]CCC,7.1,Lias Bartmess et al. 1988
+[CH2]C(C)(C)C,7.88,	Schultz Houle et al. 1984	
+[CH2]O,7.562,Johnson and Hudgens 1996
+C[O],10.72,NIST Chemistry WebBook Ionization energy evaluation
+CC[O],9.11,Williams and Hamill 1968
+C[CH]O,6.7, Lias Bartmess et al. 1988
+[CH]=O,8.12,NIST Chemistry WebBook Ionization energy evaluation
+[CH2]C=O, 10.85, resonance structure of C=C[O]
+C=C[O], 10.85, Lambert Christie et al. 1968
+C[C]=O,7.0, Lias Bartmess et al. 1988	
+CC[C]=O, 6.6, Lias Bartmess et al. 1988
+C[CH]OC, 6.5,Lossing 1977
+[O]CCCC, 9.22, Williams and Hamill 1968	
+O=[C]O, 8.20, Berkowitz Ellison et al. 1994	
+[c]1ccccc1, 8.32, Butcher Costa et al. 1987
+[O]c1ccccc1,8.56, Dewar and David 1980
+[CH2]c1ccccc1,7.242, NIST Chemistry WebBook Ionization energy evaluation
+C1=C[CH]C=CC=C1,6.28, Koenig and Chang 1978
+[CH]1CC(C2)CCC21,6.84,Houle and Beauchamp 1979
+C1[CH]C1,8.18,Dyke Ellis et al. 1985
+CC([O])C,9.2,Williams and Hamill 1968
+CCC[O],9.2,Williams and Hamill 1968
+[H],13.59844, NIST Chemistry WebBook Ionization energy evaluation
+[CH2]C=C,8.13,Houle and Beauchamp 1978
+[CH2]N,6.29,Dyke Lee et al. 1989
+[CH2]N(C)C,5.7,Burkey Castelhano et al. 1983
+[CH2]NC,5.9,Burkey Castelhano et al. 1983
