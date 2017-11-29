@@ -31,7 +31,12 @@ def vereecken_get_arrhenius(self,reaction):
 
     #get alkoxy
     alkoxy = reaction.products[0].molecule[0]
+    # make a copy for analysis, since get_cyclic_groups can break bonds
+    # to prevent double counting with functional groups
+    alkoxy = alkoxy.copy(deep=True)
+    cyclic_groups = get_cyclic_groups(alkoxy)
     groups = vereecken_get_groups(alkoxy)
+    groups.update(cyclic_groups)
     Eb = calculate_Eb(groups)
 
     # get deneracy
@@ -52,6 +57,52 @@ def calculate_Eb(groups):
     import math
     new_base = 19*math.exp(-(base - 22)**2/225)
     return new_base
+
+def get_cyclic_groups(alkoxy_mol):
+    """
+    Given a molecule object, returns all the groups vereecken used
+    to represent the molecules as a dictionary with keys being strings
+    and values being the frequency of groups being formed.
+
+    This does not account for breaking of rings during decomposition
+    """
+    labeled_atoms = alkoxy_mol.getLabeledAtoms()
+    alpha_cycles = alkoxy_mol.getAllCycles(labeled_atoms['*1'])
+    beta_cycles = alkoxy_mol.getAllCycles(labeled_atoms['*3']) # returns duplicate of each cycle
+    cycle_groups = {}
+    groups_used = []
+    for cycle in alpha_cycles + beta_cycles:
+        length = len(cycle)
+        alpha = False
+        beta = False
+        group_to_add = ""
+        if any([a.label == '*1' for a in cycle]):
+            alpha=True
+        if any([a.label == '*3' for a in cycle]):
+            beta=True
+        if alpha and beta:
+            print('cycle for molecule {} contains a ring in both alpha and beta'.format(alkoxy_mol))
+        elif alpha and length >3 and length <7:
+            group_to_add = 'alpha-c-{}'.format(length)
+        elif beta and length > 2 and length < 7:
+            group_to_add = 'beta-c-{}'.format(length)
+
+        if group_to_add != '':
+            try:
+                # 0.5 returned since each cycle is duplicated
+                cycle_groups[group_to_add] += 0.5
+            except KeyError:
+                cycle_groups[group_to_add] = 0.5
+            groups_used.append(cycle)
+
+    # now remove the bonds between the counted cycles to prevent counting
+    # them as functional groups as well
+    for cycle in groups_used:
+        for atom_index in range(len(cycle)):
+            if alkoxy_mol.hasEdge(cycle[atom_index],cycle[atom_index-1]):
+                edge = alkoxy_mol.getEdge(cycle[atom_index],cycle[atom_index-1])
+                alkoxy_mol.removeEdge(edge)
+    return cycle_groups
 
 def vereecken_get_groups(alkoxy_mol):
     """
