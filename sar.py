@@ -39,7 +39,7 @@ class SAR:
         checks that attributes are in the propper type. Meant to catch most, but
         not all errors
         """
-        assert isinstance(self.label,str)
+        assert isinstance(self.label,str) or isinstance(self.label, unicode)
         assert isinstance(self.valid_atom_types, list)
         if self.valid_atom_types:
             assert isinstance(self.valid_atom_types[0], str)

@@ -5,7 +5,7 @@ from sarDatabase import SARDatabase
 import pandas as pd
 from orlando2003 import get_IP_of_reaction, get_ionization_potential
 
-sar = AlkoxyDecompositionSAR(label='Méreau2003',
+sar = AlkoxyDecompositionSAR(label=u'Méreau2003',
                          valid_atom_types = ['Cs','CO',''],
                          temperature_range = (244,312.5),
                          pressure_range = (1e5,1e5),

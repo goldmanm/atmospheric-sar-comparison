@@ -601,6 +601,173 @@ class SarRateEstimationTest(unittest.TestCase):
 12    H u0 p0 c0 {4,S}
 13    H u0 p0 c0 {5,S}
 """)])]], family='R_Addition_MultipleBond', template=['CO-NdH_O', 'CsJ-CsCsH'])
+        self.gamma_alpha_carbonyl = TemplateReaction(reactants=[Species(label="", thermo=ThermoData(Tdata=([300,400,500,600,800,1000,1500],'K'), Cpdata=([14.478,17.028,19.406,21.413,24.263,26.01,28.192],'cal/(mol*K)','+|-',[0.8,1.1,1.2,1.1,0.8,0.5,0.2]), H298=(-50.919,'kcal/mol','+|-',0.9), S298=(64.554,'cal/(mol*K)','+|-',0.8), Cp0=(33.2579,'J/(mol*K)'), CpInf=(128.874,'J/(mol*K)'), label="""glyoxal""", comment="""Thermo library: DFT_QCI_thermo"""), molecule=[Molecule().fromAdjacencyList("""1    C u0 p0 c0 {2,S} {3,S} {4,D}
+2 *1 C u0 p0 c0 {1,S} {5,D} {6,S}
+3    H u0 p0 c0 {1,S}
+4    O u0 p2 c0 {1,D}
+5 *2 O u0 p2 c0 {2,D}
+6    H u0 p0 c0 {2,S}
+""")]), Species(label="", thermo=ThermoData(Tdata=([300,400,500,600,800,1000,1500],'K'), Cpdata=([13.614,17.846,21.434,24.32,28.647,31.786,36.685],'cal/(mol*K)','+|-',[1.3,1.6,1.6,1.6,1.5,1.4,1]), H298=(69.882,'kcal/mol','+|-',0.9), S298=(61.584,'cal/(mol*K)','+|-',0.7), Cp0=(33.2579,'J/(mol*K)'), CpInf=(182.918,'J/(mol*K)'), label="""cC3H5""", comment="""Thermo library: DFT_QCI_thermo"""), molecule=[Molecule().fromAdjacencyList("""multiplicity 2
+1    C u0 p0 c0 {2,S} {3,S} {4,S} {5,S}
+2    C u0 p0 c0 {1,S} {3,S} {6,S} {7,S}
+3 *3 C u1 p0 c0 {1,S} {2,S} {8,S}
+4    H u0 p0 c0 {1,S}
+5    H u0 p0 c0 {1,S}
+6    H u0 p0 c0 {2,S}
+7    H u0 p0 c0 {2,S}
+8    H u0 p0 c0 {3,S}
+""")])], products=[Species(label="", thermo=ThermoData(Tdata=([300,400,500,600,800,1000,1500],'K'), Cpdata=([108.93,141.596,169.069,189.457,221.574,244.005,276.613],'J/(mol*K)'), H298=(-4.72127,'kJ/mol'), S298=(394.951,'J/(mol*K)'), Cp0=(33.2579,'J/(mol*K)'), CpInf=(324.264,'J/(mol*K)'), comment="""Thermo group additivity estimation: group(Cs-CsCsCsH) + group(Cs-CsCsHH) + group(Cs-CsCsHH) + group(Cs-(Cds-Od)CsOsH) + group(Cds-OdCsH) + group(Os-CsH) + ring(Cyclopropane) + radical(C=OCOJ)"""), molecule=[Molecule().fromAdjacencyList("""multiplicity 2
+1  *3 C u0 p0 c0 {2,S} {3,S} {4,S} {6,S}
+2     C u0 p0 c0 {1,S} {3,S} {7,S} {8,S}
+3     C u0 p0 c0 {1,S} {2,S} {9,S} {10,S}
+4  *1 C u0 p0 c0 {1,S} {5,S} {11,S} {12,S}
+5     C u0 p0 c0 {4,S} {13,D} {14,S}
+6     H u0 p0 c0 {1,S}
+7     H u0 p0 c0 {2,S}
+8     H u0 p0 c0 {2,S}
+9     H u0 p0 c0 {3,S}
+10    H u0 p0 c0 {3,S}
+11 *2 O u1 p2 c0 {4,S}
+12    H u0 p0 c0 {4,S}
+13    O u0 p2 c0 {5,D}
+14    H u0 p0 c0 {5,S}
+""")])], pairs=[[Species(label="", thermo=ThermoData(Tdata=([300,400,500,600,800,1000,1500],'K'), Cpdata=([14.478,17.028,19.406,21.413,24.263,26.01,28.192],'cal/(mol*K)','+|-',[0.8,1.1,1.2,1.1,0.8,0.5,0.2]), H298=(-50.919,'kcal/mol','+|-',0.9), S298=(64.554,'cal/(mol*K)','+|-',0.8), Cp0=(33.2579,'J/(mol*K)'), CpInf=(128.874,'J/(mol*K)'), label="""glyoxal""", comment="""Thermo library: DFT_QCI_thermo"""), molecule=[Molecule().fromAdjacencyList("""1    C u0 p0 c0 {2,S} {3,S} {4,D}
+2 *1 C u0 p0 c0 {1,S} {5,D} {6,S}
+3    H u0 p0 c0 {1,S}
+4    O u0 p2 c0 {1,D}
+5 *2 O u0 p2 c0 {2,D}
+6    H u0 p0 c0 {2,S}
+""")]), Species(label="", thermo=ThermoData(Tdata=([300,400,500,600,800,1000,1500],'K'), Cpdata=([108.93,141.596,169.069,189.457,221.574,244.005,276.613],'J/(mol*K)'), H298=(-4.72127,'kJ/mol'), S298=(394.951,'J/(mol*K)'), Cp0=(33.2579,'J/(mol*K)'), CpInf=(324.264,'J/(mol*K)'), comment="""Thermo group additivity estimation: group(Cs-CsCsCsH) + group(Cs-CsCsHH) + group(Cs-CsCsHH) + group(Cs-(Cds-Od)CsOsH) + group(Cds-OdCsH) + group(Os-CsH) + ring(Cyclopropane) + radical(C=OCOJ)"""), molecule=[Molecule().fromAdjacencyList("""multiplicity 2
+1  *3 C u0 p0 c0 {2,S} {3,S} {4,S} {6,S}
+2     C u0 p0 c0 {1,S} {3,S} {7,S} {8,S}
+3     C u0 p0 c0 {1,S} {2,S} {9,S} {10,S}
+4  *1 C u0 p0 c0 {1,S} {5,S} {11,S} {12,S}
+5     C u0 p0 c0 {4,S} {13,D} {14,S}
+6     H u0 p0 c0 {1,S}
+7     H u0 p0 c0 {2,S}
+8     H u0 p0 c0 {2,S}
+9     H u0 p0 c0 {3,S}
+10    H u0 p0 c0 {3,S}
+11 *2 O u1 p2 c0 {4,S}
+12    H u0 p0 c0 {4,S}
+13    O u0 p2 c0 {5,D}
+14    H u0 p0 c0 {5,S}
+""")])], [Species(label="", thermo=ThermoData(Tdata=([300,400,500,600,800,1000,1500],'K'), Cpdata=([13.614,17.846,21.434,24.32,28.647,31.786,36.685],'cal/(mol*K)','+|-',[1.3,1.6,1.6,1.6,1.5,1.4,1]), H298=(69.882,'kcal/mol','+|-',0.9), S298=(61.584,'cal/(mol*K)','+|-',0.7), Cp0=(33.2579,'J/(mol*K)'), CpInf=(182.918,'J/(mol*K)'), label="""cC3H5""", comment="""Thermo library: DFT_QCI_thermo"""), molecule=[Molecule().fromAdjacencyList("""multiplicity 2
+1    C u0 p0 c0 {2,S} {3,S} {4,S} {5,S}
+2    C u0 p0 c0 {1,S} {3,S} {6,S} {7,S}
+3 *3 C u1 p0 c0 {1,S} {2,S} {8,S}
+4    H u0 p0 c0 {1,S}
+5    H u0 p0 c0 {1,S}
+6    H u0 p0 c0 {2,S}
+7    H u0 p0 c0 {2,S}
+8    H u0 p0 c0 {3,S}
+""")]), Species(label="", thermo=ThermoData(Tdata=([300,400,500,600,800,1000,1500],'K'), Cpdata=([108.93,141.596,169.069,189.457,221.574,244.005,276.613],'J/(mol*K)'), H298=(-4.72127,'kJ/mol'), S298=(394.951,'J/(mol*K)'), Cp0=(33.2579,'J/(mol*K)'), CpInf=(324.264,'J/(mol*K)'), comment="""Thermo group additivity estimation: group(Cs-CsCsCsH) + group(Cs-CsCsHH) + group(Cs-CsCsHH) + group(Cs-(Cds-Od)CsOsH) + group(Cds-OdCsH) + group(Os-CsH) + ring(Cyclopropane) + radical(C=OCOJ)"""), molecule=[Molecule().fromAdjacencyList("""multiplicity 2
+1  *3 C u0 p0 c0 {2,S} {3,S} {4,S} {6,S}
+2     C u0 p0 c0 {1,S} {3,S} {7,S} {8,S}
+3     C u0 p0 c0 {1,S} {2,S} {9,S} {10,S}
+4  *1 C u0 p0 c0 {1,S} {5,S} {11,S} {12,S}
+5     C u0 p0 c0 {4,S} {13,D} {14,S}
+6     H u0 p0 c0 {1,S}
+7     H u0 p0 c0 {2,S}
+8     H u0 p0 c0 {2,S}
+9     H u0 p0 c0 {3,S}
+10    H u0 p0 c0 {3,S}
+11 *2 O u1 p2 c0 {4,S}
+12    H u0 p0 c0 {4,S}
+13    O u0 p2 c0 {5,D}
+14    H u0 p0 c0 {5,S}
+""")])]], family='R_Addition_MultipleBond', template=['CO-DeH_O', 'CsJ-CsCsH'])
+        self.gamma_alpha_carbonyl_subs = TemplateReaction(reactants=[Species(label="", thermo=NASA(polynomials=[NASAPolynomial(coeffs=[2.08731,0.0309032,-1.98794e-05,6.26175e-09,-7.69946e-13,-34398.9,18.284], Tmin=(200,'K'), Tmax=(1381,'K')), NASAPolynomial(coeffs=[11.4371,0.0106774,-3.68968e-06,5.77007e-10,-3.36532e-14,-37807.9,-32.5054], Tmin=(1381,'K'), Tmax=(5000,'K'))], Tmin=(200,'K'), Tmax=(5000,'K'), Cp0=(33.2579,'J/(mol*K)'), CpInf=(199.547,'J/(mol*K)'), label="""CH3COCHO""", comment="""Thermo library: CurranPentane"""), molecule=[Molecule().fromAdjacencyList("""1    C u0 p0 c0 {2,S} {4,S} {5,S} {6,S}
+2 *1 C u0 p0 c0 {1,S} {3,S} {7,D}
+3    C u0 p0 c0 {2,S} {8,S} {9,D}
+4    H u0 p0 c0 {1,S}
+5    H u0 p0 c0 {1,S}
+6    H u0 p0 c0 {1,S}
+7 *2 O u0 p2 c0 {2,D}
+8    H u0 p0 c0 {3,S}
+9    O u0 p2 c0 {3,D}
+""")]), Species(label="", thermo=ThermoData(Tdata=([300,400,500,600,800,1000,1500],'K'), Cpdata=([13.614,17.846,21.434,24.32,28.647,31.786,36.685],'cal/(mol*K)','+|-',[1.3,1.6,1.6,1.6,1.5,1.4,1]), H298=(69.882,'kcal/mol','+|-',0.9), S298=(61.584,'cal/(mol*K)','+|-',0.7), Cp0=(33.2579,'J/(mol*K)'), CpInf=(182.918,'J/(mol*K)'), label="""cC3H5""", comment="""Thermo library: DFT_QCI_thermo"""), molecule=[Molecule().fromAdjacencyList("""multiplicity 2
+1    C u0 p0 c0 {2,S} {3,S} {4,S} {5,S}
+2    C u0 p0 c0 {1,S} {3,S} {6,S} {7,S}
+3 *3 C u1 p0 c0 {1,S} {2,S} {8,S}
+4    H u0 p0 c0 {1,S}
+5    H u0 p0 c0 {1,S}
+6    H u0 p0 c0 {2,S}
+7    H u0 p0 c0 {2,S}
+8    H u0 p0 c0 {3,S}
+""")])], products=[Species(label="", thermo=ThermoData(Tdata=([300,400,500,600,800,1000,1500],'K'), Cpdata=([142.277,176.434,206.354,230.655,267.295,293.696,335.91],'J/(mol*K)'), H298=(-35.0941,'kJ/mol'), S298=(424.495,'J/(mol*K)'), Cp0=(33.2579,'J/(mol*K)'), CpInf=(394.937,'J/(mol*K)'), comment="""Thermo group additivity estimation: group(Cs-CsCsCsH) + group(Cs-(Cds-Od)CsCsOs) + group(Cs-CsCsHH) + group(Cs-CsCsHH) + group(Cs-CsHHH) + group(Cds-OdCsH) + group(Os-CsH) + ring(Cyclopropane) + radical(CC(C)(C=O)OJ)"""), molecule=[Molecule().fromAdjacencyList("""multiplicity 2
+1  *3 C u0 p0 c0 {2,S} {3,S} {4,S} {7,S}
+2  *1 C u0 p0 c0 {1,S} {5,S} {6,S} {8,S}
+3     C u0 p0 c0 {1,S} {4,S} {9,S} {10,S}
+4     C u0 p0 c0 {1,S} {3,S} {11,S} {12,S}
+5     C u0 p0 c0 {2,S} {13,S} {14,S} {15,S}
+6     C u0 p0 c0 {2,S} {16,D} {17,S}
+7     H u0 p0 c0 {1,S}
+8  *2 O u1 p2 c0 {2,S}
+9     H u0 p0 c0 {3,S}
+10    H u0 p0 c0 {3,S}
+11    H u0 p0 c0 {4,S}
+12    H u0 p0 c0 {4,S}
+13    H u0 p0 c0 {5,S}
+14    H u0 p0 c0 {5,S}
+15    H u0 p0 c0 {5,S}
+16    O u0 p2 c0 {6,D}
+17    H u0 p0 c0 {6,S}
+""")])], pairs=[[Species(label="", thermo=NASA(polynomials=[NASAPolynomial(coeffs=[2.08731,0.0309032,-1.98794e-05,6.26175e-09,-7.69946e-13,-34398.9,18.284], Tmin=(200,'K'), Tmax=(1381,'K')), NASAPolynomial(coeffs=[11.4371,0.0106774,-3.68968e-06,5.77007e-10,-3.36532e-14,-37807.9,-32.5054], Tmin=(1381,'K'), Tmax=(5000,'K'))], Tmin=(200,'K'), Tmax=(5000,'K'), Cp0=(33.2579,'J/(mol*K)'), CpInf=(199.547,'J/(mol*K)'), label="""CH3COCHO""", comment="""Thermo library: CurranPentane"""), molecule=[Molecule().fromAdjacencyList("""1    C u0 p0 c0 {2,S} {4,S} {5,S} {6,S}
+2 *1 C u0 p0 c0 {1,S} {3,S} {7,D}
+3    C u0 p0 c0 {2,S} {8,S} {9,D}
+4    H u0 p0 c0 {1,S}
+5    H u0 p0 c0 {1,S}
+6    H u0 p0 c0 {1,S}
+7 *2 O u0 p2 c0 {2,D}
+8    H u0 p0 c0 {3,S}
+9    O u0 p2 c0 {3,D}
+""")]), Species(label="", thermo=ThermoData(Tdata=([300,400,500,600,800,1000,1500],'K'), Cpdata=([142.277,176.434,206.354,230.655,267.295,293.696,335.91],'J/(mol*K)'), H298=(-35.0941,'kJ/mol'), S298=(424.495,'J/(mol*K)'), Cp0=(33.2579,'J/(mol*K)'), CpInf=(394.937,'J/(mol*K)'), comment="""Thermo group additivity estimation: group(Cs-CsCsCsH) + group(Cs-(Cds-Od)CsCsOs) + group(Cs-CsCsHH) + group(Cs-CsCsHH) + group(Cs-CsHHH) + group(Cds-OdCsH) + group(Os-CsH) + ring(Cyclopropane) + radical(CC(C)(C=O)OJ)"""), molecule=[Molecule().fromAdjacencyList("""multiplicity 2
+1  *3 C u0 p0 c0 {2,S} {3,S} {4,S} {7,S}
+2  *1 C u0 p0 c0 {1,S} {5,S} {6,S} {8,S}
+3     C u0 p0 c0 {1,S} {4,S} {9,S} {10,S}
+4     C u0 p0 c0 {1,S} {3,S} {11,S} {12,S}
+5     C u0 p0 c0 {2,S} {13,S} {14,S} {15,S}
+6     C u0 p0 c0 {2,S} {16,D} {17,S}
+7     H u0 p0 c0 {1,S}
+8  *2 O u1 p2 c0 {2,S}
+9     H u0 p0 c0 {3,S}
+10    H u0 p0 c0 {3,S}
+11    H u0 p0 c0 {4,S}
+12    H u0 p0 c0 {4,S}
+13    H u0 p0 c0 {5,S}
+14    H u0 p0 c0 {5,S}
+15    H u0 p0 c0 {5,S}
+16    O u0 p2 c0 {6,D}
+17    H u0 p0 c0 {6,S}
+""")])], [Species(label="", thermo=ThermoData(Tdata=([300,400,500,600,800,1000,1500],'K'), Cpdata=([13.614,17.846,21.434,24.32,28.647,31.786,36.685],'cal/(mol*K)','+|-',[1.3,1.6,1.6,1.6,1.5,1.4,1]), H298=(69.882,'kcal/mol','+|-',0.9), S298=(61.584,'cal/(mol*K)','+|-',0.7), Cp0=(33.2579,'J/(mol*K)'), CpInf=(182.918,'J/(mol*K)'), label="""cC3H5""", comment="""Thermo library: DFT_QCI_thermo"""), molecule=[Molecule().fromAdjacencyList("""multiplicity 2
+1    C u0 p0 c0 {2,S} {3,S} {4,S} {5,S}
+2    C u0 p0 c0 {1,S} {3,S} {6,S} {7,S}
+3 *3 C u1 p0 c0 {1,S} {2,S} {8,S}
+4    H u0 p0 c0 {1,S}
+5    H u0 p0 c0 {1,S}
+6    H u0 p0 c0 {2,S}
+7    H u0 p0 c0 {2,S}
+8    H u0 p0 c0 {3,S}
+""")]), Species(label="", thermo=ThermoData(Tdata=([300,400,500,600,800,1000,1500],'K'), Cpdata=([142.277,176.434,206.354,230.655,267.295,293.696,335.91],'J/(mol*K)'), H298=(-35.0941,'kJ/mol'), S298=(424.495,'J/(mol*K)'), Cp0=(33.2579,'J/(mol*K)'), CpInf=(394.937,'J/(mol*K)'), comment="""Thermo group additivity estimation: group(Cs-CsCsCsH) + group(Cs-(Cds-Od)CsCsOs) + group(Cs-CsCsHH) + group(Cs-CsCsHH) + group(Cs-CsHHH) + group(Cds-OdCsH) + group(Os-CsH) + ring(Cyclopropane) + radical(CC(C)(C=O)OJ)"""), molecule=[Molecule().fromAdjacencyList("""multiplicity 2
+1  *3 C u0 p0 c0 {2,S} {3,S} {4,S} {7,S}
+2  *1 C u0 p0 c0 {1,S} {5,S} {6,S} {8,S}
+3     C u0 p0 c0 {1,S} {4,S} {9,S} {10,S}
+4     C u0 p0 c0 {1,S} {3,S} {11,S} {12,S}
+5     C u0 p0 c0 {2,S} {13,S} {14,S} {15,S}
+6     C u0 p0 c0 {2,S} {16,D} {17,S}
+7     H u0 p0 c0 {1,S}
+8  *2 O u1 p2 c0 {2,S}
+9     H u0 p0 c0 {3,S}
+10    H u0 p0 c0 {3,S}
+11    H u0 p0 c0 {4,S}
+12    H u0 p0 c0 {4,S}
+13    H u0 p0 c0 {5,S}
+14    H u0 p0 c0 {5,S}
+15    H u0 p0 c0 {5,S}
+16    O u0 p2 c0 {6,D}
+17    H u0 p0 c0 {6,S}
+""")])]], family='R_Addition_MultipleBond', template=['CO-DeNd_O', 'CsJ-CsCsH'])
 
 
     def test_cyclic_groups(self):
@@ -611,12 +778,6 @@ class SarRateEstimationTest(unittest.TestCase):
 
         func_groups = vereecken_get_groups(self.beta_propyl_cyclic_reaction.products[0].molecule[0])
         self.assertNotIn('beta-alkyl',func_groups.keys())
-
-    def test_improper_usage_of_group_checking(self):
-        """Tests that an incorrect functional group will be found if cyclics are not checked first"""
-        func_groups = vereecken_get_groups(self.beta_propyl_cyclic_reaction.products[0].molecule[0])
-        #not actually supposed to be found if cyclic method called first
-        self.assertIn('beta-alkyl',func_groups.keys())
 
     def test_formic_acid_formation_groups(self):
         groups = vereecken_get_groups(self.formic_acid_reaction.products[0].molecule[0])
@@ -631,10 +792,26 @@ class SarRateEstimationTest(unittest.TestCase):
     def test_alkyl_gamma_alcohol(self):
         groups = vereecken_get_groups(self.gamma_alcohol_beta_alkyl_rxn.products[0].molecule[0])
         self.assertEqual(len(groups),2)
-        self.assertIn('alpha-alkyl-oxygenate',groups.keys())
+        self.assertIn('alpha-alkyl',groups.keys())
         self.assertIn('beta-alkyl',groups.keys())
+        self.assertEqual(groups['alpha-alkyl'],1)
+
+    def test_alkyl_gamma_carbonyl(self):
+        groups = vereecken_get_groups(self.gamma_alpha_carbonyl.products[0].molecule[0])
+        self.assertEqual(len(groups),2)
+        self.assertIn('alpha-alkyl-oxygenate',groups.keys())
+        self.assertIn('beta-c-3',groups.keys())
         self.assertEqual(groups['alpha-alkyl-oxygenate'],1)
-    
+
+    def test_alkyl_gamma_carbonyl_subs(self):
+        groups = vereecken_get_groups(self.gamma_alpha_carbonyl_subs.products[0].molecule[0])
+        print groups
+        self.assertEqual(len(groups),2)
+        self.assertIn('alpha-alkyl',groups.keys())
+        self.assertIn('beta-c-3',groups.keys())
+        self.assertNotIn('alpha-alkyl-oxygenate',groups.keys())
+        self.assertEqual(groups['alpha-alkyl'],2)
+
     def test_alkyl_groups(self):
         groups = vereecken_get_groups(self.degenerate_reaction.products[0].molecule[0])
         self.assertEqual(len(groups),1)

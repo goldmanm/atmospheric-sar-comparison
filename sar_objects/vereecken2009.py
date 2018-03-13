@@ -31,12 +31,9 @@ def vereecken_get_arrhenius(self,reaction):
 
     #get alkoxy
     alkoxy = reaction.products[0].molecule[0]
-    # make a copy for analysis, since get_cyclic_groups can break bonds
-    # to prevent double counting with functional groups
-    alkoxy = alkoxy.copy(deep=True)
-    cyclic_groups = get_cyclic_groups(alkoxy)
     groups = vereecken_get_groups(alkoxy)
-    groups.update(cyclic_groups)
+    #print alkoxy
+    #print groups
     Eb = calculate_Eb(groups)
 
     # get deneracy
@@ -105,16 +102,26 @@ def get_cyclic_groups(alkoxy_mol):
     return cycle_groups
 
 def vereecken_get_groups(alkoxy_mol):
+    # make a copy for analysis, since get_cyclic_groups can break bonds
+    # to prevent double counting with functional groups
+    alkoxy = alkoxy_mol.copy(deep=True)
+    cyclic_groups = get_cyclic_groups(alkoxy)
+    groups = get_functional_groups(alkoxy)
+    groups.update(cyclic_groups)
+    return groups
+
+def get_functional_groups(alkoxy_mol):
     """
     given a molecule object `alkoxy_mol`. This method returns
     a dictionary of groups used in the Vereecken SAR with the
     key being the group and the value being the number of occurances
     it has.
     """
+    #print 'getting groups from {}'.format(alkoxy_mol.toSMILES())
     alkoxy_mol.assignAtomIDs()
     labeled_atoms = alkoxy_mol.getLabeledAtoms()
     assert labeled_atoms['*1'].symbol == 'C'
-    assert labeled_atoms['*3'].symbol == 'C'
+    assert labeled_atoms['*3'].symbol == 'C', alkoxy_mol.toAdjacencyList() + str(labeled_atoms)
     alpha_groups = get_atom_groups(labeled_atoms['*1'])
     beta_groups = get_atom_groups(labeled_atoms['*3'])
     
@@ -146,7 +153,21 @@ def get_atom_groups(atom):
                 elif nn.atomType.label == 'Cd':
                     addon = '-C=C'
                 elif any([nnn.isOxygen() for nnn in nn.bonds.keys() if nnn.label=='']):
-                    addon = '-alkyl-oxygenate'
+                    found_valid_group = False
+                    for nnn,bond2 in nn.bonds.items():
+                        if nnn.label == '':
+                            if nnn.isOxygen():
+                                if bond2.isDouble():
+                                    found_valid_group=True
+                                else:
+                                    for nnnn in nnn.bonds.keys():
+                                        if nnnn.id != nn.id:
+                                            if nnnn.isOxygen() or nnnn.isCarbon():
+                                                found_valid_group = True
+                    if found_valid_group:
+                        addon = '-alkyl-oxygenate'
+                    else:
+                        addon = '-alkyl'
                 else:
                     addon = '-alkyl'
 
@@ -183,8 +204,14 @@ def get_atom_groups(atom):
                     functional_groups[addon] += 1
                 except KeyError:
                     functional_groups[addon] = 1
-            else:
-                print('non-valid atom type found on atom {} with bonds {}'.format(atom, atom.bonds))
+            elif nn.symbol != 'H':
+                print('non-valid atom type found for atom {} on atom {} with bonds {}'.format(nn,atom, atom.bonds))
+    if '-alkyl-oxygenate' in functional_groups.keys() and len(functional_groups)>1:
+        if '-alkyl' in functional_groups.keys():
+            functional_groups['-alkyl'] += functional_groups['-alkyl-oxygenate']
+        else:
+            functional_groups['-alkyl'] = functional_groups['-alkyl-oxygenate']
+        del functional_groups['-alkyl-oxygenate']
     return functional_groups
 
 sar.get_arrhenius = vereecken_get_arrhenius

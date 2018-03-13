@@ -34,21 +34,7 @@ def atkinson_get_arrhenius(self,reaction):
     A = 5e13 #s-1
     b = 0.40
     #get radical species for lookup of a value
-    radical_decomp_product = None
-    for s in reaction.reactants:
-        mol = s.molecule[0]
-        labeled_atoms = mol.getLabeledAtoms()
-        try:
-            radical_atom = labeled_atoms['*3']
-            radical_decomp_product = mol
-            break
-        except KeyError:
-            pass
-    if radical_decomp_product is None:
-        if len(labeled_atoms) == 0:
-            raise TypeError("atoms not labeled for this reaction")
-        raise TypeError('Reaction object does not have specified product. RXN: {}'.format(repr(reaction)))
-    tree_entry = self.a_value_tree.descendTree(radical_decomp_product,labeled_atoms)
+    tree_entry = get_group_entry(reaction,self.a_value_tree)
     a = tree_entry.data
     if a is None:
         raise TypeError('The node {} had no data'.format(tree_entry))
@@ -63,5 +49,23 @@ def atkinson_get_arrhenius(self,reaction):
     A *= reaction.degeneracy
 
     return Arrhenius(A=(A,'s^-1'),Ea=(Ea,'kcal/mol'))
+
+def get_group_entry(reaction, tree):
+    radical_decomp_product = None
+    for s in reaction.reactants:
+        mol = s.molecule[0]
+        labeled_atoms = mol.getLabeledAtoms()
+        try:
+            radical_atom = labeled_atoms['*3']
+            radical_decomp_product = mol
+            break
+        except KeyError:
+            pass
+    if radical_decomp_product is None:
+        if len(labeled_atoms) == 0:
+            raise TypeError("atoms not labeled for this reaction")
+        raise TypeError('Reaction object does not have specified product. RXN: {}'.format(repr(reaction)))
+    return tree.descendTree(radical_decomp_product,labeled_atoms)
+    
 
 sar.get_arrhenius = atkinson_get_arrhenius
